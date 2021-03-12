@@ -10,8 +10,10 @@ import axios from "axios";
 
 let config = {
   // baseURL:"http://musicapi.leanapp.cn"
-  baseURL:"http://music.kele8.cn"
+  // baseURL:"http://music.kele8.cn"
   // baseURL:"http://localhost:3000"
+  // baseURL:"http://192.168.90.53:3000"
+  baseURL:"http://47.112.177.147:3000"
 
 };
 

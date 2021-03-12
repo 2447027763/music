@@ -22,8 +22,8 @@ export default {
                 text-decoration: none;
                 color: black;
                 &.router-link-exact-active{
-                    color: red;
-                    border-bottom:2px solid red ;
+                    color:skyblue;
+                    border-bottom:2px solid skyblue ;
                 }
             }
         }

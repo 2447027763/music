@@ -2,7 +2,7 @@
     <div class="recommend">
         <Title>推荐歌单</Title>
         <ul class="recommendList">
-            <router-link to="/" tag="li" v-for="v in recommendMusicList" :key="v.id">
+            <router-link :to="'/songlist/'+v.id" tag="li" v-for="v in recommendMusicList" :key="v.id">
                 <div>
                     <img :src="v.picUrl" alt="">
                     <span>{{v.playCount|formatNum}}</span>
@@ -10,20 +10,21 @@
                 <p>{{v.name |substr(26)}}</p>
             </router-link>
         </ul>
+        <Loading v-if="recommendMusicList.length<=0"/>
         <Title>最新音乐</Title>
-
         <MusicItem :newMusicList="newMusicList"></MusicItem>
     </div>
 </template>
 <script>
 import Title from '../components/Title'
 import MusicItem from "../components/MusicItem.vue"
-
+import Loading from "../components/Loading"
 export default {
     name:"Recommend",
     components:{
         Title,
-        MusicItem
+        MusicItem,
+        Loading
     },
     data(){
          return {
@@ -35,11 +36,9 @@ export default {
         next(vm=>{
              vm.$axios("/personalized?limit=6").then(data=>{
                  vm.recommendMusicList=data.data.result;
-                console.log(vm.recommendMusicList);
             });
              vm.$axios("/personalized/newsong").then(data=>{
                  vm.newMusicList=data.data.result;
-                console.log(vm.newMusicListt);
             });
         });
     },
@@ -54,8 +53,11 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-
+    .recommend{
+        border-top:1px solid #eee;
+    }
     ul.recommendList{
+        
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
